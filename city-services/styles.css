@@ -1,0 +1,32 @@
+body{
+    font-family: system-ui, sans-serif;
+    margin: 0;
+    color: #1a1a1a;
+}
+
+header, main, footer {
+    padding: 1rem;
+}
+header{
+    background: #0b3d6b;
+    color: white;
+}
+nav a {
+    color: white;
+    maargin-right: 1rem;
+}
+
+.services {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;    
+}
+
+.services li {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 1rem;
+    flex: 1 1 200px;
+}
