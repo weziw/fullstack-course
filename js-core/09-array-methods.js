@@ -10,30 +10,30 @@ const requests = [
 
 // map: transform every item, returns a new array of the same length
 const ids = requests.map(r => r.id);
-console.log(ids);
+console.log(ids,"This printed console dot log ids");
 
 const cats = requests.map(c => c.category);
-console.log(cats);
+console.log(cats,"This printed console dot log cats");
 
 const stat = requests.map(s => s.status);
-console.log(stat);
+console.log(stat, "This printed console dot log stat");
 
 // filter: keep only items that pass a test
 const open = requests.filter(r => r.status === "Open");
-console.log(open.length);
+console.log(open.length, "This printed console dot log open.length");
 const kuvaliwe = requests.filter(c => c.status === "Closed" );
-console.log(kuvaliwe.length);
+console.log(kuvaliwe.length,"This printed console dot log kuvaliwe");
 
 
 // Chaining: filter, then map
 const openIds = requests
   .filter(r => r.status === "Open")
   .map(r => r.id);
-console.log(openIds);
+console.log(openIds,"This printed console dot log openIds");
 
 // reduce: boil an array down to one value. 0 is the starting value.
 const totalDays = requests.reduce((sum, r) => sum + r.daysOpen, 0);
-console.log(totalDays);
+console.log(totalDays, "This printed console dot log totalDays");
 
 // find: the FIRST match, or undefined if none
 const firstGraffiti = requests.find(r => r.category === "Graffiti");
