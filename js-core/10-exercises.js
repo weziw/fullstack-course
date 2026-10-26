@@ -70,3 +70,21 @@ for (let i = 0; i < a.length; i++) {
 //   const overThousand = makeBudgetChecker(1000);
 //   print the dept of every expense where overThousand(amount) is true
 // (closure + filter + map)
+//================================================================================
+
+// Practice D: Using makeBudgetChecker, create overFiveThousand with a limit of 5000.
+// Print the depts where overFiveThousand(amount) is true. Expected: [ 'Police' ]
+const overFiveThousand = expenses.reduce((makeBudgetChecker, current) =>
+    current.amount >= makeBudgetChecker.amount ? current : makeBudgetChecker
+);
+
+
+// Practice E: Write makeDeptFilter(dept) that RETURNS a function
+// which takes an expense and returns true if expense.dept === dept.
+// Then: const isPolice = makeDeptFilter("Police");
+// Print the total amount for Police using filter(isPolice) + reduce. Expected: 10000
+
+
+
+// Practice F: Using reduce into {}, count how many expenses each MONTH has.
+// Expected: { Jan: 2, Feb: 3 }
