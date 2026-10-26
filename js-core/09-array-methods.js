@@ -12,8 +12,8 @@ const requests = [
 const ids = requests.map(r => r.id);
 console.log(ids,"This printed console dot log ids");
 
-const cats = requests.map(c => c.category);
-console.log(cats,"This printed console dot log cats");
+const categories1 = requests.map(c => c.category);
+console.log(categories1,"This printed console dot log categories1");
 
 const stat = requests.map(s => s.status);
 console.log(stat, "This printed console dot log stat");
@@ -37,7 +37,7 @@ console.log(totalDays, "This printed console dot log totalDays");
 
 // find: the FIRST match, or undefined if none
 const firstGraffiti = requests.find(r => r.category === "Graffiti");
-console.log(firstGraffiti.id);
+console.log(firstGraffiti.id, "This printed console dot log firstGraffiti.id");
 console.log(requests.find(r => r.category === "Flooding"));
 
 // some: is at least one true?   every: are all true?
@@ -46,7 +46,7 @@ console.log(requests.every(r => r.daysOpen > 1));
 
 // includes: is a value in the array?
 const categories = requests.map(r => r.category);
-console.log(categories.includes("Streetlight"));
+console.log(categories1.includes("Streetlight"));
 
 // toSorted: returns a sorted COPY (sort() changes the original array)
 // The compare function: negative = a first, positive = b first
