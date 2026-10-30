@@ -24,10 +24,34 @@ for(const[i,fee] of fees.entries()) {
 }
 
 // ========== 8. Replacing the whole array =============
-let shifts = ["Day","Night"];
+let shifts = ["Day", "Night"];
+console.log(shifts);
 shifts = ["Morning","Evening","Overnight"]; //Needs let not const
 console.log(shifts);
 
-const toClear = ["a","b"];
+const toClear = ["a", "b"];
 toClear.length = 0;
 console.log(toClear);
+
+let tryClear = ["c", "d", "e"];
+console.log('Declare and initialize the array tryClear: let tryClear = ["c", "d", "e"]; ');
+console.log(tryClear);
+console.log('Now, clear the array: tryClear = 0;');
+tryClear = 0;
+console.log(tryClear);
+
+// ============ 10. Arrays of objects (what your excercises use) ====================
+const expenses = [
+    { dept: "Parks", amount: 1200 },
+    { dept: "Police", amount: 5400 },
+    { dept: "Library", amount: 300 }
+];
+
+console.log(expenses[1]);
+console.log(expenses[1].dept);
+console.log(expenses[1].amount);
+
+expenses[0].amount = 1500;            // change one property inside box 0
+expenses.push({ dept: "Fire", amount: 2200 });
+console.log(expenses.length);
+console.log(expenses.at(-1).dept);
