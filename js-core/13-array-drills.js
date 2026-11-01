@@ -61,13 +61,13 @@ console.log(clengths, " This is the array of city number of letters.")
 
 // D11: WITHOUT filter: make an empty array called longNames. Use for...of, an if,
 //      and push to keep only names longer than 6 characters. Print longNames.
-const old_longNames = [];
+const loopLongNames = [];
 for (const city of cities) {
     if (city.length > 6) {
-        old_longNames.push(city);
+        loopLongNames.push(city);
     }
 }
-console.log(old_longNames, " These are the cities with more than 6 letters. Not using a map");
+console.log(loopLongNames, " These are the cities with more than 6 letters. Not using a map");
 
 const longNames = cities.filter(city => city.length > 6);
 console.log(longNames,"Using the modern array");
