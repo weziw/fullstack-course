@@ -1,7 +1,5 @@
 "use strict";
 
-//const { useReducer } = require("react");
-
 const expenses = [
     { dept: "Parks", amount: 1200, month: "Jan" },
   { dept: "Police", amount: 5400, month: "Jan" },

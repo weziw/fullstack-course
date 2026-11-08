@@ -96,3 +96,12 @@ const countByMonth = expenses.reduce((acc, e) => {
 console.log(countByMonth, "Count by month.");
 
 // Practice G: write this one yourself (see Step 3)
+/*Practice G: use reduce into { } to count how many expenses each department has.Print it.
+
+Expected values: Parks 2, Police 2, and 1 each for Library, Fire, Motor Vehicles, Edu, and Health.
+*/
+const numExpensesByDept = expenses.reduce((numExpenses, current) => {
+    numExpenses[current.dept] = (numExpenses[current.dept] ?? 0) + 1; 
+    return numExpenses;
+}, { });
+console.log(numExpensesByDept);
