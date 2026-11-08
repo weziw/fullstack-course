@@ -1,0 +1,11 @@
+[
+  { "dept": "Parks", "amount": 1200, "month": "Jan", "description": "Mower repair" },
+  { "dept": "Police", "amount": 5400, "month": "Jan", "description": "Radio upgrades" },
+  { "dept": "Library", "amount": 450, "month": "Jan", "description": "New books" },
+  { "dept": "Parks", "amount": 800, "month": "Feb", "description": "Irrigation parts" },
+  { "dept": "Library", "amount": 300, "month": "Feb", "description": "Printer toner" },
+  { "dept": "Police", "amount": 4600, "month": "Feb", "description": "Vehicle maintenance" },
+  { "dept": "Parks", "amount": 950, "month": "Mar", "description": "Playground mulch" },
+  { "dept": "Police", "amount": 2100, "month": "Mar", "description": "Training" },
+  { "dept": "Library", "amount": 275, "month": "Mar", "description": "Software license" }
+]
