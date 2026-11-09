@@ -61,3 +61,17 @@ for (const [dept, total] of Object.entries(totals)) {
     console.log(`  ${dept}: ${money(total)}`);
 }
 console.log(`Grand total: ${money(grandTotal)}`);
+
+/*
+    Step 6: Stage 3, the largest espense(to be written in)
+*/
+// ---------- Largest expense ----------
+
+// TODO: find the single largest expense with reduce. Same as your Exercise 4.
+const largest = expenses.reduce((max, e) => {
+    return e.amount > max.amount ? e : max;
+}, expenses[0]);
+
+console.log(
+    `\nLargest expense: ${largest.dept} ${money(largest.amount)} (${largest.description}, ${largest.month})`
+);
