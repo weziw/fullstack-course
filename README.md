@@ -13,3 +13,11 @@ Three-page accessible site built with semantic HTML and plain CSS (Flexbox).
 - Lighthouse accessibility: 100 on all three pages
 - Keyboard navigation tested manually
 - Run it: `cd city-services && python3 -m http.server 8080`
+
+## Project 2: Budget calculator
+Node command-line app that reads department expenses and budgets from JSON files.
+- Totals by department and grand total (reduce)
+- Largest single expense (reduce)
+- Over-budget check against quarterly budgets, showing limit, spent, and amount over (Object.entries + filter)
+- Optional month filter, with a clean message when a month has no data
+- Run it: `cd budget-calculator && node budget.js` or `node budget.js --month Feb`

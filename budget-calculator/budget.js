@@ -39,9 +39,14 @@ const expenses = month
 
 console.log(`Expenses loaded: ${expenses.length} (${month ?? "all months"})`);
 
+if (expenses.length === 0) {
+    console.log(`No expenses found for ${month}.`);
+    process.exit(0);   // stop the program here, cleanly
+}
+
 // ---------- Totals by department ----------
 
-// TODO: build totals, an object like { Parks: 2950, Police: 12100, Library: 1025 }
+// This code builds totals, an object like { Parks: 2950, Police: 12100, Library: 1025 }
 //       Use reduce into {}. Same pattern as your Practice G and H.
 const totals = expenses.reduce((deptTotals, e) => {
     deptTotals[e.dept] = (deptTotals[e.dept] ?? 0) + e.amount;
@@ -49,25 +54,23 @@ const totals = expenses.reduce((deptTotals, e) => {
 }, {});
 //console.log(totals," These are the totals by department.");
 
-// TODO: build grandTotal, the sum of every expense amount.
+// This code builds a grand total, the sum of every expense amount.
 const grandTotal = expenses.reduce((sumExpenses, e) => { 
     return sumExpenses + e.amount;
 }, 0);
 
-// console.log(grandTotal," This is the grand total.");
+//console.log(grandTotal," This is the grand total.");
 
-    console.log("\nTotals by department:");
+console.log("\nTotals by department:");
 for (const [dept, total] of Object.entries(totals)) {
     console.log(`  ${dept}: ${money(total)}`);
-}
+};
 console.log(`Grand total: ${money(grandTotal)}`);
 
-/*
-    Step 6: Stage 3, the largest espense(to be written in)
-*/
+
 // ---------- Largest expense ----------
 
-// TODO: find the single largest expense with reduce. Same as your Exercise 4.
+// This code will find the single largest expense with reduce.
 const largest = expenses.reduce((max, e) => {
     return e.amount > max.amount ? e : max;
 }, expenses[0]);
@@ -82,18 +85,18 @@ console.log(
 if (month) {
     console.log("\nBudget check skipped: budgets are for the full quarter.");
 } else {
-    // TODO: overBudget = the [dept, limit] pairs from Object.entries(budgets)
+    //       OverBudget = the [dept, limit] pairs from Object.entries(budgets)
     //       where the department's total is greater than its limit.
     //       Hint: Object.entries(budgets).filter(([dept, limit]) => ...)
     //       Use (totals[dept] ?? 0) in case a department had no expenses.
 
     const overBudget = Object.entries(budgets).filter(([dept, limit]) =>
-        // TODO: return true when this department's total is greater than its limit
+        // This returns true when this department's total is greater than its limit
         (totals[dept] ?? 0) > limit
     );
 
     console.log("\nOver budget:");
     for (const [dept, limit] of overBudget) {
-        console.log(`  ${dept}: limit ${money(limit)}, spent ${money(totals[dept] ?? 0)}` )
+        console.log(`  ${dept}: limit ${money(limit)}, spent ${money(totals[dept])}, over by ${money(totals[dept] - limit)}`);
     }
 };
