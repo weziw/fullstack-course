@@ -6,6 +6,8 @@ const statusMessage = document.querySelector("#status");
 const list = document.querySelector("#report-list");
 const description = document.querySelector("#description");
 const descCount = document.querySelector("#desc-count");
+const reportCount = document.querySelector("#report-count");
+const clearListButton = document.querySelector("#clear-list");
 
 // ---------- Data kept in memory while the page is open ----------
 const reports = [];      // every submitted report goes in here
@@ -39,9 +41,17 @@ form.addEventListener("submit", (event) => {
     descCount.textContent = "0 / 500 characters";   // reset the counter
 });
 
+//--------------- Feature B: Clear list Event Listener ---------------------------
+clearListButton.addEventListener("click", () => {
+    reports.length = 0;
+    renderList();
+    statusMessage.textContent = "List cleared.";
+});
+
 // ---------- Draw the list from the reports array ----------
 function renderList() {
-    list.replaceChildren();               // remove the old list items
+    list.replaceChildren();
+    reportCount.textContent = reports.length;  // <- update the live count in the heading
     for (const r of reports) {
         const item = document.createElement("li");
         item.textContent = `#${r.id} - ${r.category} at ${r.address}`;
