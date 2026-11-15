@@ -52,9 +52,12 @@ clearListButton.addEventListener("click", () => {
 function renderList() {
     list.replaceChildren();
     reportCount.textContent = reports.length;  // <- update the live count in the heading
+    clearListButton.disabled = reports.length === 0;   // true when empty
     for (const r of reports) {
         const item = document.createElement("li");
         item.textContent = `#${r.id} - ${r.category} at ${r.address}`;
         list.append(item);
     }
 }
+
+renderList();   // draw once at startup so the button starts disabled
