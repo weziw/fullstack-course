@@ -5,16 +5,32 @@ const API_URL =
     "https://data.cityofnewyork.us/resource/erm2-nwe9.json" +
     "?$select=unique_key,created_date,complaint_type,incident_address,borough,status" +
     "&$order=created_date%20DESC" +
-    "&$limit=50";
+    "&$limit=150";
 
 // ---------- Find the elements we need ----------
 const statusMessage = document.querySelector("#status");
 const searchBox = document.querySelector("#search");
 const sortSelect = document.querySelector("#sort");
 const tableBody = document.querySelector("#results");
+const count = document.querySelector("#count");
+const boroughSelect = document.querySelector("#borough");
 
 // ---------- Data ----------
 let requests = [];   // filled once the API responds
+
+/**
+ * This function should process the data, remove duplicates using a set, aphabetize them with
+ *  .toSorted(), and dynamically append options to the dropdown.
+ */
+function fillBoroughs() {
+    const boroughs = [...new Set(requests.map(r => r.borough ?? "unknown"))].toSorted();
+    for (const b of boroughs) {
+        const option = document.createElement("option");
+        option.textContent = b;
+        option.value = b;
+        boroughSelect.append(option);
+    }
+}//End function
 
 // ---------- Load from the API ----------
 // "async" lets this function use "await" to pause until a slow step finishes,
@@ -35,7 +51,10 @@ async function loadRequests() {
         requests = await response.json();
 
         statusMessage.textContent = `Loaded ${requests.length} requests.`;
+
+        fillBoroughs(); // Populate the borough dropdown dynamically
         render();
+
     } catch (error) {
         // Any failure above lands here: no network, bad address, server error.
         statusMessage.textContent = `Could not load data: ${error.message}`;
@@ -46,29 +65,34 @@ async function loadRequests() {
 function getVisibleRequests() {
     const term = searchBox.value.trim().toLowerCase();
 
-    // Keep requests whose complaint type OR address contains the search term.
-    // An empty search ("") matches everything, because every string includes "".
+    // 1. Search filter
     const matches = requests.filter(r =>
         (r.complaint_type ?? "").toLowerCase().includes(term) ||
         (r.incident_address ?? "").toLowerCase().includes(term)
     );
 
-    // localeCompare compares text alphabetically: negative, zero, or positive.
-    // The dates are in ISO format (2026-11-15T14:02), which sorts correctly as text.
+    // 2. Borough filter
+    const borough = boroughSelect.value;
+    const inBorough = borough === "all"
+        ? matches
+        : matches.filter(r => (r.borough ?? "Unknown") === borough);
+
+    // 3. Sort (applied to inBorough instead of matches)
     if (sortSelect.value === "oldest") {
-        return matches.toSorted((a, b) => a.created_date.localeCompare(b.created_date));
+        return inBorough.toSorted((a, b) => a.created_date.localeCompare(b.created_date));
     }
     if (sortSelect.value === "type") {
-        return matches.toSorted((a, b) =>
+        return inBorough.toSorted((a, b) =>
             (a.complaint_type ?? "").localeCompare(b.complaint_type ?? "")
         );
     }
-    return matches.toSorted((a, b) => b.created_date.localeCompare(a.created_date));
+    return inBorough.toSorted((a, b) => b.created_date.localeCompare(a.created_date));
 }
 
 // ---------- Draw the table from the data ----------
 function render() {
     const visible = getVisibleRequests();
+
     tableBody.replaceChildren();
 
     for (const r of visible) {
@@ -97,6 +121,7 @@ function render() {
 // ---------- Wire up the controls ----------
 searchBox.addEventListener("input", render);   // redraw on every keystroke
 sortSelect.addEventListener("change", render); // redraw when the sort changes
+boroughSelect.addEventListener("change", render);
 
 // ---------- Start ----------
 loadRequests();
