@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Open Data | City Services</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="data.js" defer></script>
+</head>
+
+<body>
+    <header>
+        <h1>City Services</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="report.html">Report an Issue</a>
+            <a href="data.html" aria-current="page">Open Data</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Recent 311 Requests</h2>
+        <p>Live data from the NYC Open Data portal, newest first.</p>
+
+        <div class="controls">
+            <label>
+                Search complaint type or address
+                <input id="search" type="search" placeholder="e.g. noise, street">
+            </label>
+
+            <label>
+                Sort by
+                <select id="sort">
+                    <option value="newest">Newest first</option>
+                    <option value="oldest">Oldest first</option>
+                    <option value="type">Complaint type A–Z</option>
+                </select>
+            </label>
+        </div>
+
+        <p id="status" role="status"></p>
+
+        <div class="table-wrap">
+            <table>
+                <caption>311 service requests</caption>
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Created</th>
+                        <th scope="col">Complaint</th>
+                        <th scope="col">Address</th>
+                        <th scope="col">Borough</th>
+                        <th scope="col">Status</th>
+                    </tr>
+                </thead>
+                <tbody id="results"></tbody>
+            </table>
+        </div>
+    </main>
+
+    <footer>
+        <p>City Services Practice Site</p>
+    </footer>
+</body>
+
+</html>

@@ -65,3 +65,40 @@ button {
     outline: 3px solid #f2a900;
     outline-offset: 2px;
 }
+
+/*--------- Adding the styles for the API calls in Module 3, part 2 -------------------*/
+
+.table-wrap {
+    overflow-x: auto;  /* lets a wide table scroll sideways on a phone */
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 1rem;
+}
+
+th,
+td {
+    text-align: left;
+    padding: 0.5rem;
+    border-bottom: 1px solid #ccc;
+}
+
+th {
+    background: #0b3d6b;
+    color: white;
+}
+
+.controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: end;
+}
+
+.controls label {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
