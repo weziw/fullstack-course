@@ -17,13 +17,14 @@ const boroughSelect = document.querySelector("#borough");
 
 // ---------- Data ----------
 let requests = [];   // filled once the API responds
+const UNKNOWN = "Unknown";
 
 /**
  * This function should process the data, remove duplicates using a set, aphabetize them with
  *  .toSorted(), and dynamically append options to the dropdown.
  */
 function fillBoroughs() {
-    const boroughs = [...new Set(requests.map(r => r.borough ?? "unknown"))].toSorted();
+    const boroughs = [...new Set(requests.map(r => r.borough ?? UNKNOWN))].toSorted();
     for (const b of boroughs) {
         const option = document.createElement("option");
         option.textContent = b;
@@ -75,7 +76,7 @@ function getVisibleRequests() {
     const borough = boroughSelect.value;
     const inBorough = borough === "all"
         ? matches
-        : matches.filter(r => (r.borough ?? "Unknown") === borough);
+        : matches.filter(r => (r.borough ?? UNKNOWN) === borough);
 
     // 3. Sort (applied to inBorough instead of matches)
     if (sortSelect.value === "oldest") {
@@ -93,6 +94,8 @@ function getVisibleRequests() {
 function render() {
     const visible = getVisibleRequests();
 
+    count.textContent = `Showing ${visible.length} of ${requests.length} requests`;
+
     tableBody.replaceChildren();
 
     for (const r of visible) {
@@ -104,7 +107,7 @@ function render() {
             new Date(r.created_date).toLocaleString("en-US"),
             r.complaint_type ?? "Unknown",
             r.incident_address ?? "No address",
-            r.borough ?? "Unknown",
+            r.borough ?? UNKNOWN,
             r.status ?? "Unknown"
         ];
 
